@@ -1,0 +1,13 @@
+ Descricao:
+    Um programa que apos ser executado consiga ou faca bypass de autorizacao para modificar a Master Boot Record e subistituir por um cavalo em sistemas Windows NT.
+
+ Impossibilidades: Falta de conhecimento, Alta complexidade, curva de aprendizagem, programacao em assembly x86, Alta seguranca de sistemas atuais.
+
+ Extras:
+  A complexidade provavelmente necessitaria de conhecimento significativo de Assembly e C.
+
+   Os metodos de protecao atual fazem com que seja quase impossivel para alguem comum que nao seja uma profissional em evasoes conseguir passar pela defesa do Windows 10/11 tornando quase impossivel ser feito nesses sistemas.
+
+   Obs: A subistituicao da MBR vai na maioria das vezes inutilizar o sistema e possivelmente destruir uma VM aumentando a dificultade do debug
+
+   possivelmente precisaria do Uso da Windows API que e extremamente complexa.
