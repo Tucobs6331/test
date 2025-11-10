@@ -11,7 +11,7 @@ tmpx = 60
 class MeuManipulador(FileSystemEventHandler):
 
     def gitpush():
-
+        subprocess.run()
 
     def __init__(self):
         self.tmprd = True
