@@ -10,36 +10,69 @@ tmpx = 60
 
 class MeuManipulador(FileSystemEventHandler):
 
-    def gitpush():
-        subprocess.run()
+    
 
     def __init__(self):
         self.tmprd = True
         self.tmp = tmpx
         self.last = time.time()
         self.a = 0
+
+    def timecheck(self):
+        timepss = time.time() - self.last
+        if self.tmprd == True:
+            return True
+        if timepss <= tmpx:
+            self.tmprd = True
+            return True
+        else: 
+            return False
+        
+    def gitcall(self):
+    
+        if self.timecheck() == True:
+            try:
+                subprocess.run(['git', 'add', '.'], check=True)
+                msg = f"Autosave ({time.ctime()}): {self.a} changes"
+                subprocess.run(["git", "commit", "-m", msg], check=True)
+                subprocess.run(["git", "push"], check=True)
+                self.tmprd = False
+                self.last = time.time()
+                self.a = 0
+                return 0
+            except subprocess.CalledProcessError as e:
+                print(f"error on git: {e.stderr.strip()}")
+                self.tmprd = True
+                return -1
+        else:
+            return -2
+
     
     def on_modified (self, event):
         print(f"[{time.ctime()}] modified {event.src_path}")
         self.a += 1
+        if self.a > 15: 
+            self.gitcall()
     
 
 
     def on_deleted(self, event):
         print(f"[{time.ctime}] deleted on: {event.src_path}")
         self.a += 1
-
+        if self.a > 15: 
+            self.gitcall()
 
     def on_created (self, event):
         print(f"[{time.ctime}] created {event.src_path}")  
         self.a += 1
-
+        if self.a > 15: 
+            self.gitcall()
         
 
 ###############################################################################################
 
 
-path = "../.." 
+path = ".." 
 
 
 event_handler = MeuManipulador()
