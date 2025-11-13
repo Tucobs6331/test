@@ -34,7 +34,7 @@ class MeuManipulador(FileSystemEventHandler):
             try:
                 subprocess.run(['git', 'add', '.'], check=True)
                 msg = f"Autosave ({time.ctime()}): {self.a} changes"
-                subprocess.run(["git", "commit", "-m", msg], check=True)
+                subprocess.run(["git", "commit", "-m", msg])
                 subprocess.run(["git", "push"], check=True)
                 self.tmprd = False
                 self.last = time.time()
