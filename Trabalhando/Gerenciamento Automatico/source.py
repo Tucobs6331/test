@@ -5,7 +5,7 @@ from watchdog.events import FileSystemEventHandler
 from watchdog.events import PatternMatchingEventHandler
 rodando = True
 tmpx = 60
-git_ignore = [".git/*"]
+git_ignore = ['.git/', '*/.git/*', '.git/*']
 
 
 class MeuManipulador(PatternMatchingEventHandler):
