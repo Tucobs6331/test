@@ -2,17 +2,21 @@ import subprocess
 import time
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
-
+from watchdog.events import PatternMatchingEventHandler
 rodando = True
 tmpx = 60
+git_ignore = [".git/*"]
 
 
-
-class MeuManipulador(FileSystemEventHandler):
+class MeuManipulador(PatternMatchingEventHandler):
 
     
 
     def __init__(self):
+        super().__init__(
+            ignore_patterns = git_ignore,
+            ignore_directories = False
+)
         self.tmprd = True
         self.tmp = tmpx
         self.last = time.time()
@@ -84,6 +88,8 @@ event_handler = MeuManipulador()
 
 
 observer = Observer()
+
+
 
 
 observer.schedule(event_handler, path, recursive=True)
