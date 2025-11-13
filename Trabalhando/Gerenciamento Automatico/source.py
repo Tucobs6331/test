@@ -54,6 +54,11 @@ class MeuManipulador(FileSystemEventHandler):
         if self.a > 15: 
             self.gitcall()
     
+    def on_moved (self, event):
+        print(f"[{time.ctime()}] moved {event.src_path}")
+        self.a += 1
+        if self.a > 15: 
+            self.gitcall()
 
 
     def on_deleted(self, event):
